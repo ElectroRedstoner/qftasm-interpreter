@@ -176,7 +176,7 @@ function step_code() {
         vals.push(val);
     }
     
-    PC[1] = PC[1] + 1;
+    PC[1] = (PC[1] + 1) & 65535;
     PC[0] = PC[1];
     RAMwrite(0, PC[1], 0);
     
@@ -184,7 +184,7 @@ function step_code() {
     
     $('#pc').text(PC[0]);
     $($('#machine-code tr')[PC[0]+2]).addClass('highlight');
-    $($('#machine-code tr')[PC[1]+3]).addClass('highlight2');
+    $($('#machine-code tr')[(PC[1]+1)&65535+2]).addClass('highlight2');
 }
 
 var code_timer;
